@@ -99,4 +99,16 @@ axis([0 500 -1 1])
 legend('Left channel', 'Right Channel')
 %%100th line of Code :D
 
+%Now using the FIR filter to eliminate the low frequencies which would 
+%naturally be neglected due to head shadow
+
+Fs = 3500;
+figure(3)
+highpass(left,1000,Fs,'ImpulseResponse','fir');
+left = highpass(left,1000,Fs);
+right = soundData;
+outputSound=[left right]
+sound(outputSound)
+
+%Please use Earphones for the audio Outputs
 
